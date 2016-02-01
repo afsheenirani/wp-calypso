@@ -175,6 +175,11 @@ const flows = {
 		destination: '/'
 	},
 
+	'jetpack-connect': {
+		steps: [ 'user', 'authorize-site' ],
+		destination: '/'
+	},
+
 	'free-trial': {
 		steps: [ 'themes', 'site', 'plans', 'user' ],
 		destination: getCheckoutDestination,

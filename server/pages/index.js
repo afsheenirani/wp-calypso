@@ -21,7 +21,7 @@ var config = require( 'config' ),
 	createReduxStore = require( 'state' ).createReduxStore,
 	setSection = require( 'state/ui/actions' ).setSection,
 	wpcom = require( 'lib/wp' ),
-	ActionTypes = require( 'state/themes/action-types' );
+	ThemesActionTypes = require( 'state/themes/action-types' );
 
 var HASH_LENGTH = 10,
 	URL_BASE_PATH = '/calypso',
@@ -394,7 +394,7 @@ module.exports = function() {
 			const context = {};
 			const store = createReduxStore();
 			store.dispatch( {
-				type: ActionTypes.RECEIVE_THEME_DETAILS,
+				type: ThemesActionTypes.RECEIVE_THEME_DETAILS,
 				themeId: theme.id,
 				themeName: theme.name,
 				themeAuthor: theme.author,

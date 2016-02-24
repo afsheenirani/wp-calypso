@@ -19,7 +19,11 @@ export default React.createClass( {
 
 	renderJetpackLogo() {
 		return (
-			<img className="jetpack-logo" src="/calypso/images/jetpack/jetpack-manage.svg" width={ 150 } height={ 150 } />
+			<img
+				className="jetpack-logo"
+				src="/calypso/images/jetpack/jetpack-logo.svg"
+				width={ 18 }
+				height={ 18 } />
 		);
 	},
 
@@ -29,15 +33,7 @@ export default React.createClass( {
 				{ this.props.showLogo
 				 	? this.renderJetpackLogo()
 					: null }
-				<div className="flow-progress-indicator">
-					{ this.translate( 'Step %(stepNumber)d of %(stepTotal)d', {
-						args: {
-							stepNumber: this.props.step,
-							stepTotal: this.props.steps
-						}
-					} ) }
-				</div>
-				<StepHeader { ...this.props }/>
+				<StepHeader { ...this.props } />
 			</div>
 		);
 	}

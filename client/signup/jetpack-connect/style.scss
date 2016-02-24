@@ -10,8 +10,8 @@
 	text-align: center;
 
 	.jetpack-logo {
-		width: 150px;
-		height: 150px;
+		width: 72px;
+		height: 72px;
 	}
 
 	.step-header {
@@ -42,6 +42,12 @@
 
 		.form-text-input {
 			padding-left: 36px;
+		}
+
+		.spinner {
+			position: absolute;
+			right: 8px;
+			top: 10px;
 		}
 	}
 

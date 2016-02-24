@@ -25,6 +25,7 @@ describe( '#createSelector', () => {
 	} );
 
 	beforeEach( () => {
+		console.warn.reset();
 		selector.reset();
 		getSitePosts.memoizedSelector.cache.clear();
 	} );

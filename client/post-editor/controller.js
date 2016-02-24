@@ -8,7 +8,7 @@ var ReactDom = require( 'react-dom' ),
 	ReduxProvider = require( 'react-redux' ).Provider,
 	startsWith = require( 'lodash/startsWith' ),
 	qs = require( 'querystring' ),
-	isValidUrl = require( 'valid-url' ).is_web_uri;
+	isValidUrl = require( 'valid-url' ).isWebUri;
 
 /**
  * Internal dependencies

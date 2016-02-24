@@ -2,18 +2,17 @@ var config = require( 'config' ),
 	utils = require( './utils' );
 
 function getSectionsModule( sections ) {
-	var dependencies = '',
+	var dependencies = "var controller = require( 'controller' );\n",
 		loadSection = '',
 		sectionLoaders = '';
 
 	if ( config.isEnabled( 'code-splitting' ) ) {
-		dependencies = [
+		dependencies += [
 			"var page = require( 'page' ),",
 			"\tlayoutFocus = require( 'lib/layout-focus' ),",
 			"\tReact = require( 'react' ),",
 			"\tLoadingError = require( 'layout/error' ),",
-			"\tclasses = require( 'component-classes' ),",
-			"\tcontroller = require( 'controller' );",
+			"\tclasses = require( 'component-classes' );",
 			'\n',
 			'var _loadedSections = {};'
 		].join( '\n' );
@@ -98,7 +97,7 @@ function splitTemplate( path, module, chunkName ) {
 }
 
 function requireTemplate( module ) {
-	return 'require( ' + JSON.stringify( module ) + ' )();\n';
+	return 'require( ' + JSON.stringify( module ) + ' )( controller.clientRouter );\n';
 }
 
 function singleEnsure( chunkName ) {

@@ -43,7 +43,10 @@ export default React.createClass( {
 		if ( stepToShow === 1 ) {
 			this.setState( { isError: true } );
 		} else if ( stepToShow === 2 ) {
-			this.setState( { jetpackNotInstalled: true } );
+			this.setState( {
+				jetpackNotInstalled: true,
+				showDialog: true
+				} );
 		} else if ( stepToShow === 3 ) {
 			this.setState( { jetpackIsDeactivated: true } );
 		} else if ( stepToShow === 4 ) {
@@ -103,42 +106,48 @@ export default React.createClass( {
 						{ this.state.isError
 							? ( <Notice
 								status="is-warning"
+								icon="trash"
 								onDismissClick={ this.onDismissClick }
-								text="That's not a real web site!" /> )
+								text="That's not a real web site" /> )
 							: null
 						}
 						{ this.state.jetpackNotInstalled
 							? ( <Notice
 								status="is-error"
+								icon="status"
 								onDismissClick={ this.onDismissClick }
-								text="Jetpack isn't installed!" /> )
+								text="Can't find Jetpack" /> )
 							: null
 						}
 						{ this.state.jetpackIsDeactivated
 							? ( <Notice
 								status="is-warning"
 								onDismissClick={ this.onDismissClick }
-								text="Jetpack is installed but deactivated!" /> )
+								icon="block"
+								text="Jetpack is deactivated" /> )
 							: null
 						}
 						{ this.state.jetpackIsDisconnected
 							? ( <Notice
 								status="is-warning"
+								icon="link-break"
 								onDismissClick={ this.onDismissClick }
-								text="Jetpack is installed but disconnected!" /> )
+								text="Jetpack is disconnected" /> )
 							: null
 						}
 						{ this.state.jetpackIsValid
 							? ( <Notice
 								status="is-success"
+								icon="plugins"
 								onDismissClick={ this.onDismissClick }
-								text="Jetpack is installed!" /> )
+								text="Jetpack is connected" /> )
 							: null
 						}
 						<FormLabel>{ this.translate( 'Site Address' ) }</FormLabel>
 						<SiteURLInput
 							ref="siteUrlInputRef"
 							onClick={ this.onClick }
+							onDismissClick={ this.onDismissClick }
 							isError={ this.state.isError } />
 					</Card>
 

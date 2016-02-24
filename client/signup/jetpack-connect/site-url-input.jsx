@@ -29,6 +29,7 @@ export default React.createClass( {
 	},
 
 	spinny() {
+		this.props.onDismissClick();
 		this.setState( { isSpinning: true } );
 		setTimeout( this.spinnyStop, 3000 );
 	},

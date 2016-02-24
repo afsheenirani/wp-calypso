@@ -18,23 +18,22 @@ import config from 'config';
  * @type {Function} Function returning cache key for memoized selector
  */
 const getCacheKey = ( () => {
-	if ( 'development' === config( 'env' ) ) {
-		const warn = require( 'lib/warn' );
-
-		return ( state, ...args ) => {
-			const hasInvalidArg = args.some( ( arg ) => {
-				return arg && -1 === [ 'number', 'boolean', 'string' ].indexOf( typeof arg );
-			} );
-
-			if ( hasInvalidArg ) {
-				warn( 'Do not pass complex objects as arguments for a memoized selector' );
-			}
-
-			return args.join();
-		};
+	if ( 'development' !== config( 'env' ) ) {
+		return ( state, ...args ) => args.join();
 	}
 
-	return ( state, ...args ) => args.join();
+	const warn = require( 'lib/warn' );
+	return ( state, ...args ) => {
+		const hasInvalidArg = args.some( ( arg ) => {
+			return arg && -1 === [ 'number', 'boolean', 'string' ].indexOf( typeof arg );
+		} );
+
+		if ( hasInvalidArg ) {
+			warn( 'Do not pass complex objects as arguments for a memoized selector' );
+		}
+
+		return args.join();
+	};
 } )();
 
 /**

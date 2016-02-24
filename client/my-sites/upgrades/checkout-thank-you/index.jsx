@@ -207,7 +207,6 @@ var CheckoutThankYou = React.createClass( {
 					{ React.createElement( componentClass, {
 						selectedSite: selectedSite,
 						isFreeTrial: this.freeTrialWasPurchased(),
-						locale: i18n.getLocaleSlug(),
 						domain: domain
 					} ) }
 				</div>
@@ -216,8 +215,6 @@ var CheckoutThankYou = React.createClass( {
 	},
 
 	supportRelatedMessages: function() {
-		var localeSlug = i18n.getLocaleSlug();
-
 		if ( ! this.isDataLoaded() ) {
 			return this.translate( 'Loading…' );
 		}
@@ -241,8 +238,8 @@ var CheckoutThankYou = React.createClass( {
 			'or {{contactLink}}contact us{{/contactLink}}.',
 			{
 				components: {
-					supportDocsLink: <a href={ 'http://' + localeSlug + '.support.wordpress.com' } target="_blank" />,
-					forumLink: <a href={ 'http://' + localeSlug + '.forums.wordpress.com' } target="_blank" />,
+					supportDocsLink: <a href="http://support.wordpress.com" target="_blank" />,
+					forumLink: <a href="http://forums.wordpress.com" target="_blank" />,
 					contactLink: <a href={ '/help/contact' } />
 				}
 			}

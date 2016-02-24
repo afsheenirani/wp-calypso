@@ -13,7 +13,7 @@ import noop from 'lodash/noop';
 import { createReduxStore } from 'state';
 
 describe( 'Server pages:', function() {
-	context( 'when trying to renderToString() LayoutLoggedOutDesign ', function() {
+	context( 'when trying to renderToString() LayoutLoggedOut ', function() {
 		before( function() {
 			mockery.enable( {
 				warnOnReplace: false,
@@ -22,8 +22,8 @@ describe( 'Server pages:', function() {
 
 			mockery.registerMock( 'analytics', noop );
 
-			const LayoutLoggedOutDesign = require( 'layout/logged-out-design' );
-			this.LayoutLoggedOutDesignFactory = React.createFactory( LayoutLoggedOutDesign );
+			const LayoutLoggedOut = require( 'layout/logged-out' );
+			this.LayoutLoggedOutDesignFactory = React.createFactory( LayoutLoggedOut );
 			this.props = {
 				tier: 'free',
 				store: createReduxStore(),

@@ -8,8 +8,8 @@ See: [shrinkwrap docs](https://docs.npmjs.com/cli/shrinkwrap)
 ## Modifying Dependencies
 
 We use clingwrap to avoid creating huge diffs in npm-shrinkwrap.json. clingwrap also removes
-`from` and `resolved` fields which is expected. If you happen to be pointing at a package
-that is not published with npm, you may want to update the npm-shrinkwrap.json by hand.
+`from` and `resolved` fields which is expected. If you need to update a package that is not published with npm, 
+you will need to update the npm-shrinkwrap.json by hand.
 
 - Install [clingwrap](https://github.com/goodeggs/clingwrap) globally: `npm install -g clingwrap`
 - Update your desired package, e.g. `npm install lodash@4.0.0 --save`

@@ -1,7 +1,9 @@
 var React = require( 'react' ),
 	url = require( 'url' ),
 	config = require( 'config' ),
-	classnames = require( 'classnames' );
+	classnames = require( 'classnames' ),
+	page = require( 'page' ),
+	qs = require( 'qs' );
 
 var PopoverMenu = require( 'components/popover/menu' ),
 	PopoverMenuItem = require( 'components/popover/menu-item' ),
@@ -43,27 +45,43 @@ var actionMap = {
 		window.open( fackbookUrl, 'facebook', 'width=626,height=436,resizeable,scrollbars' );
 	},
 	pressThis: function( post ) {
-		var primarySite = sitesList.getPrimary(), wordpressUrl;
-
+		let primarySite = sitesList.getPrimary();
 		if ( ! primarySite ) {
+			alert( 'you should sign up for a WordPress.com site!' );
 			return;
 		}
 
-		if ( primarySite.wpcom_url && ! primarySite.jetpack ) {
-			wordpressUrl = url.parse( 'https://' + primarySite.wpcom_url + '/wp-admin/press-this.php' );
-		} else {
-			wordpressUrl = url.parse( url.resolve( primarySite.URL, 'wp-admin/press-this.php' ) );
+		let args = {};
+
+		if ( post.content_embeds && post.content_embeds.length ) {
+			args.embed = post.content_embeds[0].src;
+		} else if ( post.canonical_image && post.canonical_image.uri ) {
+			args.image = post.canonical_image.uri;
 		}
 
-		delete wordpressUrl.search;
-		wordpressUrl.query = {
-			u: post.URL,
-			t: post.title
-		};
+		args.title = post.title;
+		args.text = post.excerpt;
+		args.url = post.URL;
 
-		wordpressUrl = url.format( wordpressUrl );
+		const query = qs.stringify( args );
 
-		window.open( wordpressUrl, 'pressThis', 'width=626,height=436,resizeable,scrollbars' );
+		page( `/post/${ primarySite.slug }?${ query }` );
+
+	//	if ( primarySite.wpcom_url && ! primarySite.jetpack ) {
+//			wordpressUrl = url.parse( 'https://' + primarySite.wpcom_url + '/wp-admin/press-this.php' );
+//		} else {
+//			wordpressUrl = url.parse( url.resolve( primarySite.URL, 'wp-admin/press-this.php' ) );
+//		}//
+
+//		delete wordpressUrl.search;
+//		wordpressUrl.query = {
+//			u: post.URL,
+//			t: post.title
+//		};//
+
+//		wordpressUrl = url.format( wordpressUrl );//
+
+//		window.open( wordpressUrl, 'pressThis', 'width=626,height=436,resizeable,scrollbars' );
 	}
 };
 

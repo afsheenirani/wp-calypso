@@ -7,7 +7,8 @@ var ReactDom = require( 'react-dom' ),
 	page = require( 'page' ),
 	ReduxProvider = require( 'react-redux' ).Provider,
 	startsWith = require( 'lodash/startsWith' ),
-	qs = require( 'querystring' );
+	qs = require( 'querystring' ),
+	isValidUrl = require( 'valid-url' ).is_web_uri;
 
 /**
  * Internal dependencies
@@ -96,7 +97,7 @@ function getPressThisContent( text, url, title, image, embed ) {
 	if ( image ) {
 		pieces.push( ReactDomServer.renderToStaticMarkup( <p><a href={ url }><img src={ image } /></a></p> ) );
 	}
-	if ( embed ) {
+	if ( isValidUrl( embed ) ) {
 		pieces.push( embed );
 	}
 	if ( text ) {

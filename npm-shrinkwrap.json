@@ -9742,6 +9742,9 @@
           "resolved": "https://registry.npmjs.org/lodash/-/lodash-2.4.2.tgz"
         }
       }
+    },
+    "valid-url": {
+      "version": "1.0.9"
     }
   }
 }

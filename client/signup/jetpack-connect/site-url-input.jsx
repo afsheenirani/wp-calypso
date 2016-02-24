@@ -1,10 +1,9 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 import FormTextInput from 'components/forms/form-text-input';
 import Gridicon from 'components/gridicon';
 import Button from 'components/button';
 import Spinner from 'components/spinner';
-import classNames from 'classnames';
 
 export default React.createClass( {
 	displayName: 'JetpackConnectSiteURLInput',
@@ -22,7 +21,7 @@ export default React.createClass( {
 			value: event.target.value
 		} );
 
-		if( this.state.value != null ) {
+		if ( this.state.value != null ) {
 			this.setState( {
 				buttonEnabled: true
 			} );
@@ -59,7 +58,7 @@ export default React.createClass( {
 				</div>
 				<Button
 					primary
-					disabled={ !Boolean( this.state.value ) }
+					disabled={ ( !Boolean( this.state.value ) || this.state.isSpinning ) }
 					onClick={ this.spinny }>{ this.translate( 'Connect Now' ) }</Button>
 			</div>
 		);

@@ -1,11 +1,10 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 import Main from 'components/main';
 import Card from 'components/card';
 import FormLabel from 'components/forms/form-label';
 import SiteURLInput from './site-url-input';
 import ConnectHeader from './connect-header';
-import LoggedOutForm from 'components/logged-out-form';
 import LoggedOutFormLinks from 'components/logged-out-form/links';
 import LoggedOutFormLinkItem from 'components/logged-out-form/link-item';
 import Dialog from 'components/dialog';
@@ -41,18 +40,17 @@ export default React.createClass( {
 	onClick() {
 		const stepToShow = Math.floor( ( Math.random() * 5 ) + 1 );
 
-		if( stepToShow === 1 ) {
-			this.setState( { 'isError': true } );
-		} else if ( stepToShow === 2) {
+		if ( stepToShow === 1 ) {
+			this.setState( { isError: true } );
+		} else if ( stepToShow === 2 ) {
 			this.setState( { jetpackNotInstalled: true } );
-		} else if ( stepToShow === 3) {
+		} else if ( stepToShow === 3 ) {
 			this.setState( { jetpackIsDeactivated: true } );
-		} else if ( stepToShow === 4) {
+		} else if ( stepToShow === 4 ) {
 			this.setState( { jetpackIsDisconnected: true } );
-		} else if ( stepToShow === 5) {
+		} else if ( stepToShow === 5 ) {
 			this.setState( { jetpackIsValid: true } );
 		}
-
 	},
 
 	onDismissClick() {
@@ -67,16 +65,15 @@ export default React.createClass( {
 
 	render() {
 		const dialogButtons = [ {
-				action: 'cancel',
-				label: this.translate( 'Cancel' )
-			},
-			{
-				action: 'install',
-				label: this.translate( 'Connect Now' ),
-				onClick: this.goToPluginInstall,
-				isPrimary: true
-			}
-		];
+			action: 'cancel',
+			label: this.translate( 'Cancel' )
+		},
+		{
+			action: 'install',
+			label: this.translate( 'Connect Now' ),
+			onClick: this.goToPluginInstall,
+			isPrimary: true
+		} ];
 
 		return (
 			<Main className="jetpack-connect__main">

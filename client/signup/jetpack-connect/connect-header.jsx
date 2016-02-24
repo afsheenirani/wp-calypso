@@ -31,7 +31,7 @@ export default React.createClass( {
 		return (
 			<div className="jetpack-connect__header-container">
 				{ this.props.showLogo
-				 	? this.renderJetpackLogo()
+					? this.renderJetpackLogo()
 					: null }
 				<StepHeader { ...this.props } />
 			</div>

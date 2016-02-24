@@ -97,7 +97,7 @@ describe( '#createSelector', () => {
 		expect( selector ).to.have.been.calledTwice;
 	} );
 
-	it( 'should accept an array of dependant state values', () => {
+	it( 'should accept an array of dependent state values', () => {
 		const getSitePostsWithArrayDependants = createSelector( selector, ( state ) => [ state.posts ] );
 		const state = {
 			posts: {

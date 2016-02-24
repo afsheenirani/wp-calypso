@@ -4,6 +4,13 @@
 import memoize from 'lodash/memoize';
 import isEqual from 'lodash/isEqual';
 
+/**
+ * Returns a memoized state selector for use with the Redux global application state.
+ *
+ * @param  {Function} selector      Function calculating cached result
+ * @param  {Function} getDependants Function describing dependent state
+ * @return {Function}               Memoized selector
+ */
 export default function createSelector( selector, getDependants = ( state ) => state ) {
 	const memoizedSelector = memoize( selector, ( state, ...args ) => args.join() );
 	let lastDependants;

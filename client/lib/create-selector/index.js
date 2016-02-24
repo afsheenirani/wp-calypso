@@ -2,7 +2,7 @@
  * External dependencies
  */
 import memoize from 'lodash/memoize';
-import isEqual from 'lodash/isEqual';
+import shallowEqual from 'react-pure-render/shallowEqual';
 
 /**
  * Returns a memoized state selector for use with the Redux global application state.
@@ -21,7 +21,7 @@ export default function createSelector( selector, getDependants = ( state ) => s
 			currentDependants = [ currentDependants ];
 		}
 
-		if ( lastDependants && ! isEqual( currentDependants, lastDependants ) ) {
+		if ( lastDependants && ! shallowEqual( currentDependants, lastDependants ) ) {
 			memoizedSelector.cache.clear();
 		}
 

@@ -41,6 +41,14 @@ export default React.createClass( {
 		this.props.onClick();
 	},
 
+	buttonLabel() {
+		if( !this.state.isSpinning ) {
+			return( this.translate( 'Connect Now' ) );
+		} else {
+			return( this.translate( 'Connecting…' ) )
+		}
+	},
+
 	render() {
 		return (
 			<div>
@@ -60,7 +68,7 @@ export default React.createClass( {
 				<Button
 					primary
 					disabled={ ( !Boolean( this.state.value ) || this.state.isSpinning ) }
-					onClick={ this.spinny }>{ this.translate( 'Connect Now' ) }</Button>
+					onClick={ this.spinny }>{ this.buttonLabel() }</Button>
 			</div>
 		);
 	}

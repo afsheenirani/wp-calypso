@@ -4,6 +4,12 @@
 import classNames from 'classNames';
 import React from 'react';
 
+/**
+ * Internal dependencies
+ */
+import CompactCard from 'components/card/compact';
+import Gridicon from 'components/gridicon';
+
 const CheckoutThankYouHeader = React.createClass( {
 	propTypes: {
 		isDataLoaded: React.PropTypes.bool.isRequired,
@@ -26,16 +32,22 @@ const CheckoutThankYouHeader = React.createClass( {
 			return this.translate( 'Loading…' );
 		} else if ( this.props.productName ) {
 			if ( this.props.isFreeTrial ) {
-				return this.translate( "We hope you enjoy %(productName)s. What's next? Take it for a spin!", {
+				return this.translate( "We hope you enjoy {{strong}}%(productName)s{{/strong}}. What's next? Take it for a spin!", {
 					args: {
 						productName: this.props.productName
+					},
+					components: {
+						strong: <strong/>
 					}
 				} );
 			} else {
 				return this.translate(
-					"You will receive an email confirmation shortly for your purchase of %(productName)s. What's next?", {
+					"You will receive an email confirmation shortly for your purchase of {{strong}}%(productName)s{{/strong}}. What's next?", {
 						args: {
 							productName: this.props.productName
+						},
+						components: {
+							strong: <strong/>
 						}
 					}
 				);
@@ -50,16 +62,21 @@ const CheckoutThankYouHeader = React.createClass( {
 			'checkout-thank-you-header': true,
 			'is-placeholder': ! this.props.isDataLoaded
 		}
+
 		return (
-			<div className={ classNames( classes ) }>
-				<span className="checkout-thank-you-header__icon"/>
-				<h1 className="checkout-thank-you-header__heading">
-					{ this.renderHeading() }
-				</h1>
-				<h2 className="checkout-thank-you-header__text">
-					{ this.renderText() }
-				</h2>
-			</div>
+			<CompactCard className={ classNames( classes ) }>
+				<div className="checkout-thank-you-header-content">
+					<span className="checkout-thank-you-header__icon">
+						<Gridicon icon="trophy" size={ 48 } />
+					</span>
+					<h1 className="checkout-thank-you-header__heading">
+						{ this.renderHeading() }
+					</h1>
+					<h2 className="checkout-thank-you-header__text">
+						{ this.renderText() }
+					</h2>
+				</div>
+			</CompactCard>
 		);
 	}
 } );

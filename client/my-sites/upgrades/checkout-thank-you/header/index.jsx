@@ -7,7 +7,6 @@ import React from 'react';
 /**
  * Internal dependencies
  */
-import CompactCard from 'components/card/compact';
 import Gridicon from 'components/gridicon';
 
 const CheckoutThankYouHeader = React.createClass( {
@@ -64,10 +63,10 @@ const CheckoutThankYouHeader = React.createClass( {
 		}
 
 		return (
-			<CompactCard className={ classNames( classes ) }>
+			<div className={ classNames( classes ) }>
 				<div className="checkout-thank-you-header-content">
 					<span className="checkout-thank-you-header__icon">
-						<Gridicon icon="trophy" size={ 48 } />
+						<Gridicon icon="trophy" size={ 72 } />
 					</span>
 					<h1 className="checkout-thank-you-header__heading">
 						{ this.renderHeading() }
@@ -76,7 +75,7 @@ const CheckoutThankYouHeader = React.createClass( {
 						{ this.renderText() }
 					</h2>
 				</div>
-			</CompactCard>
+			</div>
 		);
 	}
 } );

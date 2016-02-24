@@ -1,5 +1,6 @@
 var React = require( 'react' ),
 	url = require( 'url' ),
+	defer = require( 'lodash/defer' ),
 	config = require( 'config' ),
 	classnames = require( 'classnames' ),
 	page = require( 'page' ),
@@ -47,7 +48,6 @@ var actionMap = {
 	pressThis: function( post ) {
 		let primarySite = sitesList.getPrimary();
 		if ( ! primarySite ) {
-			alert( 'you should sign up for a WordPress.com site!' );
 			return;
 		}
 
@@ -65,23 +65,9 @@ var actionMap = {
 
 		const query = qs.stringify( args );
 
-		page( `/post/${ primarySite.slug }?${ query }` );
-
-	//	if ( primarySite.wpcom_url && ! primarySite.jetpack ) {
-//			wordpressUrl = url.parse( 'https://' + primarySite.wpcom_url + '/wp-admin/press-this.php' );
-//		} else {
-//			wordpressUrl = url.parse( url.resolve( primarySite.URL, 'wp-admin/press-this.php' ) );
-//		}//
-
-//		delete wordpressUrl.search;
-//		wordpressUrl.query = {
-//			u: post.URL,
-//			t: post.title
-//		};//
-
-//		wordpressUrl = url.format( wordpressUrl );//
-
-//		window.open( wordpressUrl, 'pressThis', 'width=626,height=436,resizeable,scrollbars' );
+		defer( () => { // defer to give the menu time to close and unmount
+			page( `/post/${ primarySite.slug }?${ query }` )
+		} );
 	}
 };
 

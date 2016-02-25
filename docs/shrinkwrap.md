@@ -17,7 +17,7 @@ you will need to update the npm-shrinkwrap.json by hand.
 - Verify that Calypso works as expected and that tests pass.
 - Commit the updated package.json and npm-shrinkwrap.json
 
-### Bumping Sub-Dependencies in a Single Package
+## Bumping Sub-Dependencies in a Single Package
 
 Periodically, we'll want to bump our package sub-dependencies to pick up bugfixes.  To update sub-dependencies in a 
 single module, (with lodash as an example) :

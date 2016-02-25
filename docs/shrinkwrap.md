@@ -17,11 +17,22 @@ you will need to update the npm-shrinkwrap.json by hand.
 - Verify that Calypso works as expected and that tests pass.
 - Commit the updated package.json and npm-shrinkwrap.json
 
-## Modifying Sub-Dependencies
+### Bumping Sub-Dependencies in a Single Package
 
-Periodically, we'll want to bump sub-dependencies to pick up bugfixes. This may result
-in a large diff that is too big to review. It's very important that your node_modules 
-is deleted before you do this to be sure to pick up the latest versions.
+Periodically, we'll want to bump our package sub-dependencies to pick up bugfixes.  To update sub-dependencies in a 
+single module, (with lodash as an example) :
+
+- Remove only that package in node_modules `rm -rf node_modules/lodash`
+- Install the same version `npm install lodash@4.0.0 --save`
+- Clingwrap the package `clingwrap lodash`
+- Verify that Calypso works as expected and that tests pass.
+- Commit the changes to npm-shrinkwrap.json.
+
+## Bumping Sub-Dependencies in all Packages
+
+We may also choose to update all package sub-dependencies. This will result in a large diff that is too big to review, 
+so testing instructions should ensure that a clean install works and Calypso runs and tests correctly. It's very 
+important that your node_modules is deleted before you do this to be sure to pick up the latest versions.
 
 - Run `make distclean` to delete local node_modules
 - Delete your local copy of npm-shrinkwrap.json.
